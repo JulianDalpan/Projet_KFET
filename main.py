@@ -3,25 +3,23 @@ from tkinter import ttk
 from tkinter import *
 import pyglet
 from MyApp import MyApp
-import os
-
 if __name__ == "__main__":
 
     root = tk.Tk()
     my_app = MyApp(root)
     root.title("ESIREM - Inventory system")
-    root.iconbitmap(os.path.abspath('img/robot.ico'))
+    #root.iconbitmap('robot.ico')
     # root.config(background='#222222')
     # root.attributes('-alpha', 0.5)
     style = ttk.Style(root)
 
     # THEME
-    root.tk.call("source", "forest-dark.tcl")
-    root.tk.call("source", "forest-light.tcl")
+    root.tk.call("source", "Template/forest-dark.tcl")
+    #root.tk.call("source", "Template/forest-light.tcl")
     style.theme_use("forest-dark")
 
     # FONT
-    pyglet.font.add_file('abnes.otf')
+    pyglet.font.add_file('Template/abnes/abnes.otf')
 
     # HEADER
     header = ttk.Label(root, text="ESIREM", font=("abnes", 20), padding=10)

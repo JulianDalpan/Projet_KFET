@@ -110,7 +110,7 @@ class MyApp:
         self.widgets_frame_1 = ttk.LabelFrame(tab1, text="User Login")
         self.widgets_frame_1.pack(fill=X, side="top", padx=350)
 
-        self.image = tk.PhotoImage(file="space-invader.png")
+        self.image = tk.PhotoImage(file="img/space-invader.png")
         self.image_label = ttk.Label(self.widgets_frame_1, image=self.image).pack()
 
         self.login = ttk.Entry(self.widgets_frame_1)

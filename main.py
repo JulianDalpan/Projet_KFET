@@ -3,13 +3,14 @@ from tkinter import ttk
 from tkinter import *
 import pyglet
 from MyApp import MyApp
+import os
 
 if __name__ == "__main__":
 
     root = tk.Tk()
     my_app = MyApp(root)
     root.title("ESIREM - Inventory system")
-    root.iconbitmap('robot.ico')
+    root.iconbitmap(os.path.abspath('img/robot.ico'))
     # root.config(background='#222222')
     # root.attributes('-alpha', 0.5)
     style = ttk.Style(root)

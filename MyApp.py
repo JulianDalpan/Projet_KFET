@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, StringVar, X, Y
 import features
+import login_library.login as log
 
 class MyApp:
 
@@ -125,7 +126,7 @@ class MyApp:
         self.password.bind("<FocusOut>", lambda e: self.restore_default_text(self.password, "Password"))
         self.password.pack(pady=5)
 
-        self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in')
+        self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in',command=lambda:log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt"))
         self.buttonSignIn.pack(pady=5)
 
         self.buttonSignIn.focus_set() # INITIAL FOCUS ON BUTTON    

@@ -132,4 +132,10 @@ def delet_item(name):
     database.DeleteItem(name)
 
 
+def listColumnSales():
+    column=('Product','Price','Quantity','Time')
+    return column
 
+def listColumnStock():
+    column=('Product','Price','Quantity','Update')
+    return column

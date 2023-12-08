@@ -149,3 +149,12 @@ def getItemSale(name):
             line=c.fetchall()
             return line 
     
+
+def DeleteItem(name):
+    with DatabaseConnector(databaseName) as conn:
+        if conn:
+            c = conn.cursor()
+            rSQL = '''DELETE FROM ITEM WHERE name = '{}';'''
+            c.execute(rSQL.format(name))
+            line=c.fetchall()
+            return line 

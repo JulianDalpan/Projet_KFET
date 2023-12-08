@@ -128,5 +128,8 @@ def get_total(name):
 
     return(total_quantity)
 
+def delet_item(name):
+    database.DeleteItem(name)
+
 
 

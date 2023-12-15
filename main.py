@@ -40,9 +40,11 @@ if __name__ == "__main__":
     tab3 = ttk.Frame(tabControl)
 
     tabControl.add(tab1, text='Login')
-    tabControl.add(tab2, text='Sales')
-    tabControl.add(tab3, text='Stock')
+    if my_app.acces==True:
+        tabControl.add(tab2, text='Sales')
+        tabControl.add(tab3, text='Stock')
     tabControl.pack(expand=1, fill="both")
+    print(my_app.acces)
 
     my_app.load_tab_login(tab1)
     treeview = my_app.load_tab_add_sales(tab2)

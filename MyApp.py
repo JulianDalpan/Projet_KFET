@@ -17,6 +17,7 @@ class MyApp:
         self.a = tk.BooleanVar()
         self.productList2 = features.getallitem()
         self.quantityList = StringVar()
+        self.acces=False
 
 
     def load_data_sales(self, treeview):
@@ -128,7 +129,7 @@ class MyApp:
 
         self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in',command=lambda:log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt"))
         self.buttonSignIn.pack(pady=5)
-
+        #self.acces=log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt")
         self.buttonSignIn.focus_set() # INITIAL FOCUS ON BUTTON    
 
     def on_product_focus_out(self, event):
@@ -277,7 +278,7 @@ class MyApp:
         cols = ("Product", "Price", "Quantity", "Update")
 
         self.treeview2 = ttk.Treeview(self.treeFrame2, show="headings",
-                                yscrollcommand=self.treeScroll2.set, columns=cols, height=13)
+                                yscrollcommand=self.treeScroll2.set, columns=cols, height=13,)
         self.treeview2.column("Product")
         self.treeview2.column("Price")
         self.treeview2.column("Quantity")

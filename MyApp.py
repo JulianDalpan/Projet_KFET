@@ -22,6 +22,8 @@ class MyApp:
 
     def load_data_sales(self, treeview):
 
+        print("In load_data_sales\n")
+
         listSales = list(features.getallsale())
         listColumn = list(features.listColumnSales())
 
@@ -33,6 +35,9 @@ class MyApp:
     
 
     def load_data_stock(self):
+
+        print("In load_data_stock\n")
+
         listColumn = list(features.listColumnStock())
         all = features.getall()
 
@@ -44,6 +49,8 @@ class MyApp:
 
 
     def insert_stock(self):
+
+        print("In insert_stock\n")
 
         quantityToAddSpinbox = int(self.quantityToAdd.get())
 
@@ -68,6 +75,8 @@ class MyApp:
 
     def insert_sales(self):
 
+        print("In insert_sales\n")
+
         productEntry = self.product.get()
         quantityEntry = int(self.quantity.get())
         features.addsales(productEntry, quantityEntry)
@@ -78,6 +87,8 @@ class MyApp:
 
 
     def get_index(self, *args):
+
+        print("In get_index\n")
 
         self.currentSelection = self.product.get()
         self.mystr.set(features.getprice(self.currentSelection))
@@ -98,16 +109,22 @@ class MyApp:
 
     def callbackFunc(self, event):
         
+        print("In callbackFunc\n")
+
         self.currentSelection = self.product.get()
         self.currentSelection2 = self.existantProduct.get()
 
     def restore_default_text(self, entry, default_text):
 
+        print("In restore_default_text\n")
+
         # INSERT DEFAUT TEXT
         if entry.get() == "":
             entry.insert(0, default_text)
 
-    def load_tab_login(self, tab1):
+    def load_tab_login(self, tab1,tab2,tab3,tabControl):
+
+        print("In load_tab_login\n")
 
         self.widgets_frame_1 = ttk.LabelFrame(tab1, text="User Login")
         self.widgets_frame_1.pack(fill=X, side="top", padx=350)
@@ -127,12 +144,14 @@ class MyApp:
         self.password.bind("<FocusOut>", lambda e: self.restore_default_text(self.password, "Password"))
         self.password.pack(pady=5)
 
-        self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in',command=lambda:log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt"))
+        self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in',command=lambda:log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt",self,tab2,tab3,tabControl))
         self.buttonSignIn.pack(pady=5)
         #self.acces=log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt")
         self.buttonSignIn.focus_set() # INITIAL FOCUS ON BUTTON    
 
     def on_product_focus_out(self, event):
+
+        print("In on_product_focus_out\n")
 
         if not self.product.get():
             self.product.set("Product")
@@ -142,9 +161,14 @@ class MyApp:
 
     def on_frame_focus_out(self, event):
         
+        print("In on_frame_focus_out\n")
+
         self.var.set("Product")
 
     def load_quantity(self):
+
+        print("In load_quantity\n")
+
         selected_product = self.var.get()
         print("Selected Product:", selected_product)
         

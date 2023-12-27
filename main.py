@@ -40,15 +40,16 @@ if __name__ == "__main__":
     tab3 = ttk.Frame(tabControl)
 
     tabControl.add(tab1, text='Login')
-    if my_app.acces==True:
-        tabControl.add(tab2, text='Sales')
-        tabControl.add(tab3, text='Stock')
-    tabControl.pack(expand=1, fill="both")
-    print(my_app.acces)
+    #tabControl.add(tab2, text='Sales')
+    #tabControl.add(tab3, text='Stock')
 
-    my_app.load_tab_login(tab1)
-    treeview = my_app.load_tab_add_sales(tab2)
-    my_app.load_tab_stock(tab3)
-    my_app.load_data_sales(treeview)
+    tabControl.pack(expand=1, fill="both")
+
+
+    my_app.load_tab_login(tab1,tab2,tab3,tabControl)
+    #if my_app.acces==True:
+    #    treeview = my_app.load_tab_add_sales(tab2)
+    #    my_app.load_tab_stock(tab3)
+    #    my_app.load_data_sales(treeview)
 
     root.mainloop()

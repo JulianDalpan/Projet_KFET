@@ -272,8 +272,6 @@ class MyApp:
 
     def load_tab_stock(self, tab3):
 
-        # getprice = features.getprice(self.productList2)
-
         # LEFT SIDE #
         
         self.widgets_frame_3 = ttk.LabelFrame(tab3, text="Add product(s)")

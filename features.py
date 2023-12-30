@@ -6,8 +6,8 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph,Im
 from reportlab.lib.styles import getSampleStyleSheet
 
 #Chemin du pdf
-PDF_path="SALES_"+datetime.datetime.now().strftime('%Y_%m_%d')+".pdf"
-image_path="logo-esirem.jpg"
+PDF_path="Exported_Pdf/SALES_"+datetime.datetime.now().strftime('%Y_%m_%d')+".pdf"
+image_path="img/logo-esirem.jpg"
 
 
 def additems(name,quantity):

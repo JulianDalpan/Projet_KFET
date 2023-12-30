@@ -138,7 +138,7 @@ class MyApp:
         self.login.bind("<FocusOut>", lambda e: self.restore_default_text(self.login, "Login"))
         self.login.pack(pady=5)
 
-        self.password = ttk.Entry(self.widgets_frame_1)
+        self.password = ttk.Entry(self.widgets_frame_1,show='*')
         self.password.insert(0, "Password")
         self.password.bind("<FocusIn>", lambda e: self.password.delete('0', 'end'))  # EVENT : DELETE LABEL IF FOCUS
         self.password.bind("<FocusOut>", lambda e: self.restore_default_text(self.password, "Password"))
@@ -177,6 +177,13 @@ class MyApp:
 
         self.quantity.set(self.getquantity)
         print("Set Quantity:", self.quantity.get())
+
+    def generate_pdf(self):
+
+        print('In generate PDF')
+
+        features.generate_sale_pdf()
+        
 
 
     def load_tab_add_sales(self, tab2):
@@ -217,6 +224,9 @@ class MyApp:
         # TEST 06/12
         self.test = ttk.Button(self.widgets_frame_2, text='TEST', command=lambda: self.load_quantity())
         self.test.grid(row=4, column=0, sticky="nsew", padx=5, pady=5)
+
+        self.but_generate_pdf = ttk.Button(self.widgets_frame_2, text='Generate PDF', command=lambda: self.generate_pdf())
+        self.but_generate_pdf.grid(row=5, column=0, sticky="nsew", padx=5, pady=5)
 
         # RIGHT SIDE #
 

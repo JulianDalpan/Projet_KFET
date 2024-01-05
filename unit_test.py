@@ -4,7 +4,7 @@ from datetime import datetime
 from io import StringIO
 
 # Importez vos fonctions depuis le fichier features.py
-from features import additems, subbitems, add_new_items, getquantity, getprice, addsales, generate_sale_pdf, get_total
+from features import add_new_items, getprice, addsales, get_total
 
 class TestFeatures(unittest.TestCase):
 

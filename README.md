@@ -20,7 +20,7 @@ This program is an inventory and sales management application developed using th
 
 ## Installation
 
-1. Download 'ESIREM - Inventory system'
+1. Download `ESIREM - Inventory system`
 2. Navigate to the directory: `cd your-repo`
 3. Run the program: `python main.py`
 
@@ -28,7 +28,11 @@ This program is an inventory and sales management application developed using th
 
 1. Launch the application by running `main.py`.
 2. Use the graphical interface to perform inventory and sales management operations.
-3. Log in using the Id: 'Admin' and password '0000'.
+3. Log in using the Id: `Admin` and password `0000`.
+
+## Analysis
+
+1. Different UML are in the `img` repository
 
 ## Author
 

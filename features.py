@@ -1,3 +1,8 @@
+"""
+@AUTHOR : Julian DALPAN
+@VERSION : 2.2.0
+"""
+
 import database
 import datetime
 from reportlab.lib import colors
@@ -9,7 +14,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 PDF_path="Exported_Pdf/SALES_"+datetime.datetime.now().strftime('%Y_%m_%d')+".pdf"
 image_path="img/logo-esirem.jpg"
 
-
+#Ajoute un item avec une quantité
 def additems(name,quantity):
     """
     Add a specified quantity of items to the inventory.

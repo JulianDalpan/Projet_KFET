@@ -113,8 +113,6 @@ class MyApp:
         self.getquantity = features.getquantity(selected_product)
         print("Get Quantity:", self.getquantity)
 
-        # self.var.trace('w', self.getquantity)
-
         try:
             self.max_value = self.getquantity
         except AttributeError:
@@ -245,7 +243,6 @@ class MyApp:
         Args : 
             tab2 : sales tab.
         """
-        #self.varQ = StringVar()
 
         # LEFT SIDE #
 
@@ -267,8 +264,7 @@ class MyApp:
 
         self.quantity = ttk.Combobox(self.widgets_frame_2, textvariable=self.varQ, values=self.listQt, state="readonly")
         self.varQ.set("Quantity")
-        # self.varQ.trace('w', lambda *args: self.load_quantity())
-        # self.quantity.insert(0, "Quantity")
+
         self.quantity.bind("<FocusIn>", lambda e: self.quantity.selection_clear())
         self.quantity.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
 

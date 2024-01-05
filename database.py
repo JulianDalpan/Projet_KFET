@@ -1,3 +1,8 @@
+"""
+@AUTHOR : Julian DALPAN
+@VERSION : 3.0.0
+"""
+
 import sqlite3
 from sqlite3 import Error
 from pathlib import Path

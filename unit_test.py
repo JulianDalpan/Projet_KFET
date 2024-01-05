@@ -3,7 +3,6 @@ from unittest.mock import patch, MagicMock
 from datetime import datetime
 from io import StringIO
 
-# Importez vos fonctions depuis le fichier features.py
 from features import add_new_items, getprice, addsales, get_total
 
 class TestFeatures(unittest.TestCase):

@@ -159,7 +159,7 @@ def getall():
     """
     product=[]
     for elem in database.getAll():
-        product.append([elem['name'],elem['price'],elem['quantity']])
+        product.append([elem['name'],elem['price'],elem['quantity'],elem['purchasedprice']])
     return product
 
 #Recupere toute les vente effectuée
@@ -203,8 +203,8 @@ def getlastsale():
     """
     product=[]
     for elem in database.getLastSale():
-        product.append([elem['product'],elem['price'],elem['quantity'],elem['time'],elem['team']])
-    return product
+        product.append([elem['product'],elem['price'],elem['quantity'],elem['time']])
+    return product[0]
 
 #Recupere tout les items de la base de données
 def getallitem():

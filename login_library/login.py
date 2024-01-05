@@ -1,5 +1,11 @@
 import login_library.crypto as crypt
 
+"""
+@AUTHOR : Julian DALPAN
+@VERSION : 1.0.0
+
+"""
+
 decalage=3
 # Fonction pour vérifier les identifiants et mots de passe
 def login_identify(identifiant, mot_de_passe, fichier_utilisateurs,app,tab2,tab3,tabControl):

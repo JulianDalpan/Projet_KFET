@@ -1,3 +1,7 @@
+"""
+@AUTHOR : Julian DALPAN
+@VERSION : 1.0.0
+"""
 def cesar(sentence, decalage):
     sentence_crypted = ""
     

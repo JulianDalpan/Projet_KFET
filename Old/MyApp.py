@@ -1,12 +1,7 @@
-"""
-@AUTHOR : Joris ZURETTI
-@VERSION : 1.0.0
-
-"""
-
 import tkinter as tk
-from tkinter import ttk, StringVar, X
+from tkinter import ttk, StringVar, X, Y
 import features
+import login_library.login as log
 
 class MyApp:
 
@@ -18,20 +13,16 @@ class MyApp:
         self.mystr2 = StringVar()
         self.var = StringVar()
         self.var2 = StringVar()
-        self.listQt = []
         self.productList = features.getallitem()
         self.a = tk.BooleanVar()
         self.productList2 = features.getallitem()
         self.quantityList = StringVar()
-        self.acces = False
+        self.acces=False
+
 
     def load_data_sales(self, treeview):
-        """
-        This function load all the data for each sales.
 
-        Args : 
-            treeview : sales view in tkinter.
-        """
+        print("In load_data_sales\n")
 
         listSales = list(features.getallsale())
         listColumn = list(features.listColumnSales())
@@ -44,9 +35,8 @@ class MyApp:
     
 
     def load_data_stock(self):
-        """
-        This function load all the data for each product in stocks
-        """
+
+        print("In load_data_stock\n")
 
         listColumn = list(features.listColumnStock())
         all = features.getall()
@@ -59,9 +49,9 @@ class MyApp:
 
 
     def insert_stock(self):
-        """
-        This function inserts a product into the current stock
-        """
+
+        print("In insert_stock\n")
+
         quantityToAddSpinbox = int(self.quantityToAdd.get())
 
         if self.checkbuttonStatus:
@@ -75,7 +65,7 @@ class MyApp:
             existantProductEntry = self.existantProduct.get()
             features.additems(existantProductEntry, quantityToAddSpinbox)
 
-        # DELETE TREEVIEW
+        # DELET TREEVIEW
         for item in self.treeview2.get_children():
             self.treeview2.delete(item)
 
@@ -84,9 +74,9 @@ class MyApp:
 
 
     def insert_sales(self):
-        """
-        This function inserts a product into the current sales
-        """
+
+        print("In insert_sales\n")
+
         productEntry = self.product.get()
         quantityEntry = int(self.quantity.get())
         features.addsales(productEntry, quantityEntry)
@@ -97,6 +87,8 @@ class MyApp:
 
 
     def get_index(self, *args):
+
+        print("In get_index\n")
 
         self.currentSelection = self.product.get()
         self.mystr.set(features.getprice(self.currentSelection))
@@ -110,105 +102,34 @@ class MyApp:
         self.getquantity = features.getquantity(selected_product)
         print("Get Quantity:", self.getquantity)
 
-        # self.var.trace('w', self.getquantity)
-
-        try:
-            self.max_value = self.getquantity
-        except AttributeError:
-            self.max_value = 0
-
-        self.listQt = self.load_combobox_values(self.max_value)
+        self.quantity.set(self.getquantity)
+        print("Set Quantity:", self.quantity.get())
 
 
-    def callbackFunc(self):
-        """
-        This function is enable when an event occurs.
-        """
+
+    def callbackFunc(self, event):
         
+        print("In callbackFunc\n")
+
         self.currentSelection = self.product.get()
         self.currentSelection2 = self.existantProduct.get()
 
-
     def restore_default_text(self, entry, default_text):
-        """
-        This function restore the default text in each text zone.
 
-         Args :       
-            entry (list) : actual text in the text box
-            default_text (list) : default text to be placed in the text box
-        """
+        print("In restore_default_text\n")
 
-        # INSERT A DEFAULT TEXT
+        # INSERT DEFAUT TEXT
         if entry.get() == "":
             entry.insert(0, default_text)
 
+    def load_tab_login(self, tab1,tab2,tab3,tabControl):
 
-    def on_product_focus_out(self):
-        """
-        This function allowed to restore the text "Poduct" in the text box.
-        """
-
-        if not self.product.get():
-            self.product.set("Product")
-            
-        elif not self.existantProduct.get():
-            self.product.set("Product")
-
-
-    def on_frame_focus_out(self):
-        """
-        This function allowed to restore the text "Poduct" in the text box.
-        """      
-        self.var.set("Product")
-
-
-    def load_combobox_values(self, x):
-        """
-        This function load the right number list available of the product selected.
-
-        Args :
-            x : maximum quantity of the selected product.
-        """
-
-        self.listQt = list(range(x + 1)) # Liste de nombres de 0 à x. 
-        self.quantity["values"] = self.listQt
-
-
-    def set_new_product(self):
-        """
-        This function is used to add a new product to the stock.
-        """
-
-        self.checkbuttonStatus = self.a.get()
-
-        if self.checkbuttonStatus:
-            self.newProductEntry = ttk.Entry(self.widgets_frame_3)
-            self.newProductEntry.insert(0, "Product")
-            self.newProductEntry.bind("<FocusIn>", lambda e: self.newProductEntry.delete('0', 'end'))  # EVENT : DELETE LABEL IF FOCUS
-            self.newProductEntry.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
-
-            self.priceOfNewProduct = ttk.Entry(self.widgets_frame_3)
-            self.priceOfNewProduct.insert(0, "Price")
-            self.priceOfNewProduct.bind("<FocusIn>", lambda e: self.priceOfNewProduct.delete('0', 'end'))
-            self.priceOfNewProduct.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
-
-        else:
-            self.newProductEntry.grid_remove()
-            self.priceOfNewProduct.grid_remove()
-
-
-    def load_tab_login(self, tab1):
-        """
-        This function load and manage the tab login. 
-
-        Args : 
-            tab1 : login tab.
-        """
+        print("In load_tab_login\n")
 
         self.widgets_frame_1 = ttk.LabelFrame(tab1, text="User Login")
         self.widgets_frame_1.pack(fill=X, side="top", padx=350)
 
-        self.image = tk.PhotoImage(file="space-invader.png")
+        self.image = tk.PhotoImage(file="img/space-invader.png")
         self.image_label = ttk.Label(self.widgets_frame_1, image=self.image).pack()
 
         self.login = ttk.Entry(self.widgets_frame_1)
@@ -217,7 +138,7 @@ class MyApp:
         self.login.bind("<FocusOut>", lambda e: self.restore_default_text(self.login, "Login"))
         self.login.pack(pady=5)
 
-        self.password = ttk.Entry(self.widgets_frame_1)
+        self.password = ttk.Entry(self.widgets_frame_1,show='*')
         self.password.insert(0, "Password")
         self.password.bind("<FocusIn>", lambda e: self.password.delete('0', 'end'))  # EVENT : DELETE LABEL IF FOCUS
         self.password.bind("<FocusOut>", lambda e: self.restore_default_text(self.password, "Password"))
@@ -225,18 +146,48 @@ class MyApp:
 
         self.buttonSignIn = ttk.Button(self.widgets_frame_1, text='Sign in',command=lambda:log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt",self,tab2,tab3,tabControl))
         self.buttonSignIn.pack(pady=5)
+        #self.acces=log.login_identify(self.login.get(),self.password.get(),"login_library/utilisateurs.txt")
+        self.buttonSignIn.focus_set() # INITIAL FOCUS ON BUTTON    
 
-        self.buttonSignIn.focus_set() # INITIAL FOCUS ON BUTTON   
+    def on_product_focus_out(self, event):
+
+        print("In on_product_focus_out\n")
+
+        if not self.product.get():
+            self.product.set("Product")
+            
+        elif not self.existantProduct.get():
+            self.product.set("Product")
+
+    def on_frame_focus_out(self, event):
+        
+        print("In on_frame_focus_out\n")
+
+        self.var.set("Product")
+
+    def load_quantity(self):
+
+        print("In load_quantity\n")
+
+        selected_product = self.var.get()
+        print("Selected Product:", selected_product)
+        
+        self.getquantity = features.getquantity(selected_product)
+        print("Get Quantity:", self.getquantity)
+
+        self.quantity.set(self.getquantity)
+        print("Set Quantity:", self.quantity.get())
+
+    def generate_pdf(self):
+
+        print('In generate PDF')
+
+        features.generate_sale_pdf()
+        
 
 
     def load_tab_add_sales(self, tab2):
-        
-        """
-        This function load and manage the tab sales. The view is split in two sides.
 
-        Args : 
-            tab2 : sales tab.
-        """
         #self.varQ = StringVar()
 
         # LEFT SIDE #
@@ -255,12 +206,12 @@ class MyApp:
         self.product.bind("<FocusIn>", lambda e: self.product.selection_clear())
         self.product.bind("<FocusOut>", self.on_product_focus_out)
 
+        
         self.varQ = StringVar()
-
-        self.quantity = ttk.Combobox(self.widgets_frame_2, textvariable=self.varQ, values=self.listQt, state="readonly")
+        self.quantity = ttk.Combobox(self.widgets_frame_2, textvariable=self.varQ, values=[], state="readonly")
         self.varQ.set("Quantity")
-        # self.varQ.trace('w', lambda *args: self.load_quantity())
-        # self.quantity.insert(0, "Quantity")
+        #self.varQ.trace('w', lambda *args: self.load_quantity())
+        #self.quantity.insert(0, "Quantity")
         self.quantity.bind("<FocusIn>", lambda e: self.quantity.selection_clear())
         self.quantity.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
 
@@ -271,8 +222,11 @@ class MyApp:
         self.buttonAdd.grid(row=3, column=0, sticky="nsew", padx=5, pady=5)
 
         # TEST 06/12
-        # self.test = ttk.Button(self.widgets_frame_2, text='TEST', command=lambda: self.load_quantity())
-        # self.test.grid(row=4, column=0, sticky="nsew", padx=5, pady=5)
+        self.test = ttk.Button(self.widgets_frame_2, text='TEST', command=lambda: self.load_quantity())
+        self.test.grid(row=4, column=0, sticky="nsew", padx=5, pady=5)
+
+        self.but_generate_pdf = ttk.Button(self.widgets_frame_2, text='Generate PDF', command=lambda: self.generate_pdf())
+        self.but_generate_pdf.grid(row=5, column=0, sticky="nsew", padx=5, pady=5)
 
         # RIGHT SIDE #
 
@@ -296,15 +250,27 @@ class MyApp:
         return self.treeview
     
 
+    def set_new_product(self):
+        # checkbuttonStatus = True if self.a.get() else False
+        self.checkbuttonStatus = self.a.get()
+
+        if self.checkbuttonStatus:
+            self.newProductEntry = ttk.Entry(self.widgets_frame_3)
+            self.newProductEntry.insert(0, "Product")
+            self.newProductEntry.bind("<FocusIn>", lambda e: self.newProductEntry.delete('0', 'end'))  # EVENT : DELETE LABEL IF FOCUS
+            self.newProductEntry.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
+
+            self.priceOfNewProduct = ttk.Entry(self.widgets_frame_3)
+            self.priceOfNewProduct.insert(0, "Price")
+            self.priceOfNewProduct.bind("<FocusIn>", lambda e: self.priceOfNewProduct.delete('0', 'end'))
+            self.priceOfNewProduct.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
+
+        else:
+            self.newProductEntry.grid_remove()
+            self.priceOfNewProduct.grid_remove()
+
+
     def load_tab_stock(self, tab3):
-        """
-        This function load and manage the tab stock. The view is split in two sides.
-
-        Args : 
-            tab3 : stock tab.
-        """
-
-        # getprice = features.getprice(self.productList2)
 
         # LEFT SIDE #
         
@@ -326,7 +292,7 @@ class MyApp:
         self.priceExistantProduct = ttk.Entry(self.widgets_frame_3, textvariable=self.mystr2, state='disabled')
         self.priceExistantProduct.grid(row=2, column=0, sticky="ew", padx=5, pady=5) 
 
-        self.quantityToAdd = ttk.Entry(self.widgets_frame_3)
+        self.quantityToAdd = ttk.Combobox(self.widgets_frame_3)
         self.quantityToAdd.insert(0, "Quantity")
         self.quantityToAdd.bind("<FocusIn>", lambda e: self.quantityToAdd.delete('0', 'end'))
         self.quantityToAdd.grid(row=3, column=0, sticky="ew", padx=5, pady=5)
@@ -344,7 +310,7 @@ class MyApp:
         cols = ("Product", "Price", "Quantity", "Update")
 
         self.treeview2 = ttk.Treeview(self.treeFrame2, show="headings",
-                                yscrollcommand=self.treeScroll2.set, columns=cols, height=13)
+                                yscrollcommand=self.treeScroll2.set, columns=cols, height=13,)
         self.treeview2.column("Product")
         self.treeview2.column("Price")
         self.treeview2.column("Quantity")
